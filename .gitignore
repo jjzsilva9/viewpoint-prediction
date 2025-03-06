@@ -1,0 +1,6 @@
+/cocodoom
+image_motion_cnn.pth
+image_cnn.pth
+movement_nn.pth
+doom_motion_model.pth
+image_motion_cnn_*
