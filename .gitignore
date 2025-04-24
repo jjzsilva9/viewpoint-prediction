@@ -5,3 +5,4 @@ movement_nn.pth
 doom_motion_model.pth
 image_motion_cnn_*
 *.pth
+/heatmaps
