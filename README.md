@@ -1,6 +1,6 @@
 <h1>A Quantitative Study of the Extent to Which Region-of-Interest Can Be Used for Viewpoint Motion Prediction</h1>
 
-This repository contains the code and figures used to undertake research for my final year project at the University of York. This project was completed in partnership with AMD.
+This repository contains the code and figures used for my final year research project at the University of York. This project was completed in partnership with AMD, and achieved a mark of 82%. To read the full paper click <a href="Final_Year_Project (5).pdf">here</a>
 
 This project aims to develop a predictive model utilising frame data to predict
 viewpoint motion in video games to enable pre-rendering and delivery of
@@ -102,7 +102,7 @@ compressed more.
 
 <h2>Results</h2>
 <h3>MSE Loss</h3>
-<image src=""></image>
+<image src="loss_all.png"></image>
 The graph plots the MSE loss as the prediction window increases for the
 combined image and motion model, the previous motion-only model, and
 also a model that predicts the last movement as the next movement. We
@@ -217,4 +217,4 @@ A method to use viewpoint predictions to assist the video encoder was
 developed, and the viewpoint predictions of the image model were found to
 improve the quality of the frames output, as measured through VMAF.
 
-To read the full paper click <a href="">here</a>
+To read the full paper click <a href="Final_Year_Project (5).pdf">here</a>
