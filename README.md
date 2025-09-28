@@ -93,6 +93,7 @@ combined according to a weighting scheme: front-heavy, back-heavy, or
 linear.
 
 <img src="images/qpmap.png"></img>
+
 By passing these heatmaps to the encoder as QP maps, the encoder can
 dynamically adjust Quantization Parameters across regions of the frame.
 Smaller QP values are assigned to important regions, and larger QP values
