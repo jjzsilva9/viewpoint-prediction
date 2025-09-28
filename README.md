@@ -28,7 +28,7 @@ size of the input window, and H is the size of the prediction window. This
 means that the model takes in the M motion vectors previous to the frame,
 and outputs H motion vector predictions.
 
-<img src="seq2seq.png"></img>
+<img src="architecture/seq2seq.png"></img>
 The model was based on LSTMs and uses a seq2seq architecture. A
 seq2seq architecture consists of an encoder and a decoder. The M input
 motion vectors are input to the encoder, which generates and maintains
@@ -49,7 +49,7 @@ is the semantic segmentation map at the point of prediction
 and Dt
 is the depth map.
 
-<img src="seq2seqimage.drawio.png"></img>
+<img src="architecture/seq2seqimage.drawio.png"></img>
 <b>Encoder</b>
 <ul>
 <li><b>Content LSTM</b> - The semantic segmentation map and depth map are
@@ -85,14 +85,14 @@ generate a point cloud, representing each pixel visible in the frame in 3D
 coordinates. A transformation and rotation equivalent to the predicted motion vector was
 then applied to the point cloud, and the points were reprojected.
 
-<img src="image (1).png"></img>
+<img src="images/frame with point cloud.png"></img>
 
 By predicting motion vectors for the next n frames in the prediction window, n heatmaps can be combined. This was done by normalising each heatmap (0.0-1.0), then applying a Gaussian blur. This was done to create
 natural gradients, preventing encoding artifacts. The heatmaps were then
 combined according to a weighting scheme: front-heavy, back-heavy, or
 linear.
 
-<img src="qpmap.png"></img>
+<img src="images/qpmap.png"></img>
 By passing these heatmaps to the encoder as QP maps, the encoder can
 dynamically adjust Quantization Parameters across regions of the frame.
 Smaller QP values are assigned to important regions, and larger QP values
@@ -102,14 +102,14 @@ compressed more.
 
 <h2>Results</h2>
 <h3>MSE Loss</h3>
-<image src="loss_all.png"></image>
+<image src="results/loss_all.png"></image>
 The graph plots the MSE loss as the prediction window increases for the
 combined image and motion model, the previous motion-only model, and
 also a model that predicts the last movement as the next movement. We
 can see that both of the predictive models are much more accurate than
 predicting the last input, reducing the MSE loss from ~3750 to under 2000.
 
-<image src="loss_no_input_prediction.png"></image>
+<image src="results/loss_no_input_prediction.png"></image>
 
 Plotting just the 2 predictive models, as done here, shows interesting results. This was measured further for a predictive window of 20
 frames. The image model shows an upwards trend - this makes sense, as
@@ -134,8 +134,8 @@ could potentially move in a direction in 1 frame - if the prediction predicts a
 movement of 0, but the player moves as far as possible in 1 frame, it results
 in a percentage error of 100%.
 
-<image src="percentage_error_x.png"></image>
-<image src="percentage_error_y.png"></image>
+<image src="results/percentage_error_x.png"></image>
+<image src="results/percentage_error_y.png"></image>
 
 The X and Y metrics display similar trends, with the image model starting at
 a lower error than the baseline model, but increasing at a faster rate, with
@@ -146,7 +146,7 @@ model, and between 15-16% for the baseline model. For these metrics,
 the image model is preferable for the RTT encountered in real-world cloud
 gaming systems.
 
-<image src="percentage_error_z.png"></image>
+<image src="results/percentage_error_z.png"></image>
 
 The Z metric shows a different trend, where the baseline model beats
 the image model for predictions below 5 frames (143ms), with the image
@@ -157,7 +157,7 @@ at predicting for longer periods due to being able to see changes in floor
 height, which could also worsen it’s earlier predictions, where the nearby
 change in floor height isn’t likely to have affected the player’s position yet.
 
-<image src="percentage_error_angle.png"></image>
+<image src="results/percentage_error_angle.png"></image>
 
 The Angle metric shows very high percentage errors for both models, which
 then drops off and plateaus at ~50% for both models at around frame 7
@@ -195,9 +195,9 @@ of video quality. This metric fits our use case and enables us to compare
 the VMAF between the different encoding methods. VMAF is represented
 as a score between 0 and 100. 
 
-<image src="h264_vmaf.png"></image>
-<image src="h265_vmaf.png"></image>
-<image src="av1_vmaf.png"></image>
+<image src="results/h264_vmaf.png"></image>
+<image src="results/h265_vmaf.png"></image>
+<image src="results/av1_vmaf.png"></image>
 
 These show that both the image and baseline model improve the quality of
 the frame over the vanilla encode. The image model beats both, which is
