@@ -1,6 +1,6 @@
 <h1>A Quantitative Study of the Extent to Which Region-of-Interest Can Be Used for Viewpoint Motion Prediction</h1>
 
-This repository contains the code and figures used for my final year research project at the University of York. This project was completed in partnership with AMD, and achieved a mark of 82%. To read the full paper click <a href="Final_Year_Project (5).pdf">here</a>
+This repository contains the code and figures used for my final year research project at the University of York. This project was completed in partnership with AMD, and achieved a mark of 82%. The paper was also published in the 2025 AMD Global Technical Authors Conference. To read the full paper click <a href="Final_Year_Project (5).pdf">here</a>
 
 This project aims to develop a predictive model utilising frame data to predict
 viewpoint motion in video games to enable pre-rendering and delivery of
